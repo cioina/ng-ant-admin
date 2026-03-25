@@ -21,6 +21,7 @@ ui/yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.eslintcache
 
 # Visual Studio Code
 ui/.vscode/*
