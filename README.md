@@ -130,8 +130,8 @@ provideRouter(routes, withViewTransitions({ skipInitialTransition: true }))
 使用 MSW (Mock Service Worker) 模拟数据，无需启动后端即可体验完整功能。
 
 ```bash
-# 1. 克隆 mock 分支
-git clone -b mock https://github.com/huajian123/ng-antd-admin.git
+# 1. 克隆
+git clone https://github.com/huajian123/ng-antd-admin.git
 
 # 2. 进入前端目录
 cd ng-antd-admin/ui
@@ -177,13 +177,16 @@ npm run start
 # 1. 进入前端目录
 cd ui
 
-# 2. 安装依赖
+# 2. 修改环境environment.ts的  mockEnabled字段
+  mockEnabled: true
+
+# 3. 安装依赖
 npm install
 
-# 3. 启动开发服务器
+# 4. 启动开发服务器
 npm start
 
-# 4. 浏览器访问 http://localhost:4201
+# 5. 浏览器访问 http://localhost:4201
 ```
 
 ### 方式三：纯净版 (零业务代码)
@@ -268,6 +271,55 @@ this.winWidthService.getWindowWidthStore()
 | v15.x | Angular 15 | 传统 NgModule 版本 | [下载](https://github.com/huajian123/ng-antd-admin/tree/v15) |
 
 > ⚠️ **注意**：Angular 15+ 引入了 Standalone Components，项目结构变化较大。请根据您的团队技术栈选择对应的版本。
+
+---
+
+## 🤖 AI 辅助上手
+
+本项目在 `docs/meta-model/` 下维护了一套**项目元模型文档**，覆盖模块地图、核心流程、权限体系、状态管理、变更热区等。
+
+如果你使用 AI 编程助手（Claude、Cursor、Copilot 等），可以直接把 `meta-index.md` 喂给 AI，让它快速建立对项目的完整认知，而不需要重新扫描整个仓库。
+
+### 推荐用法
+
+**1. 快速了解项目结构**
+
+把 `docs/meta-model/meta-index.md` 的内容粘贴到对话里，然后问：
+
+```
+读完这份索引，帮我解释一下这个项目的整体架构
+```
+
+**2. 定位某个功能的源码**
+
+```
+参考 meta-index.md，帮我找到"多页签"功能的实现逻辑在哪里
+```
+
+**3. 处理需求或 Bug**
+
+```
+先读 docs/meta-model/meta-index.md，我要给账号管理页新增"批量禁用"功能，帮我定位影响面和需要改哪些文件
+```
+
+**4. 理解某个核心流程**
+
+```
+参考 docs/meta-model/flow-index.md，帮我梳理登录到权限加载的完整流程
+```
+
+### 文档索引
+
+| 文档 | 内容 |
+|------|------|
+| [meta-index.md](./docs/meta-model/meta-index.md) | 总入口，先读这里 |
+| [module-index.md](./docs/meta-model/module-index.md) | 所有页面模块地图 |
+| [functional-inventory.md](./docs/meta-model/functional-inventory.md) | 功能清单（功能 → 路由 → 源码） |
+| [auth-login-index.md](./docs/meta-model/auth-login-index.md) | 认证与权限体系 |
+| [flow-index.md](./docs/meta-model/flow-index.md) | 核心流程（登录、HTTP、路由复用等） |
+| [change-hotspots.md](./docs/meta-model/change-hotspots.md) | 高风险变更区，二次开发必读 |
+
+> 元模型文档会随项目持续更新。如果你发现文档与代码不符，欢迎提 PR 修正。
 
 ---
 

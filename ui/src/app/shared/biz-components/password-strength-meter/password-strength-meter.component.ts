@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChanges, booleanAttribute, numberAttribute, inject, input, output } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, booleanAttribute, numberAttribute, inject, input, output, ChangeDetectionStrategy } from '@angular/core';
 
 import { PasswordStrengthMeterService } from './password-strength-meter.service';
 import { PSMProgressBarDirective } from './psm-progress-bar.directive';
@@ -7,8 +7,9 @@ import { PSMProgressBarDirective } from './psm-progress-bar.directive';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'password-strength-meter',
   templateUrl: './password-strength-meter.component.html',
-  styleUrls: ['./password-strength-meter.component.less'],
+  styleUrl: './password-strength-meter.component.less',
   providers: [PasswordStrengthMeterService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PSMProgressBarDirective],
   host: {
     class: 'psm'

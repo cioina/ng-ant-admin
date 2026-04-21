@@ -1,4 +1,4 @@
-import { Directive, inject, Input } from '@angular/core';
+import { Directive, inject, input } from '@angular/core';
 
 import { NzModalComponent } from 'ng-zorro-antd/modal';
 
@@ -18,12 +18,14 @@ import { ModalResizeConfig, ModalResizeService } from './modal-resize.service';
   selector: 'nz-modal[nzxModalResize]',
 })
 export class ModalResizeDirective {
-  @Input() nzxResizeConfig?: ModalResizeConfig;
+  readonly nzxResizeConfig = input<ModalResizeConfig>();
 
   modalResizeService = inject(ModalResizeService);
   protected modal = inject(NzModalComponent, { host: true });
 
   constructor() {
+    // afterOpen/afterClose 各自只会触发一次，且由 NzModalComponent 自身管理生命周期，
+    // modal 销毁时这些 Observable 会自动 complete，无需 takeUntilDestroyed
     this.modal.afterOpen.subscribe(() => {
       const modalElement = this.modal.getElement()!;
       if (!modalElement) {
@@ -35,7 +37,7 @@ export class ModalResizeDirective {
       modalElement.classList.add(wrapCls);
 
       // 创建调整大小手柄
-      this.modalResizeService.createResizeHandlers(wrapCls, this.nzxResizeConfig);
+      this.modalResizeService.createResizeHandlers(wrapCls, this.nzxResizeConfig());
 
       this.modal.afterClose.subscribe(() => {
         this.modalResizeService.dispose();
